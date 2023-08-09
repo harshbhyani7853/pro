@@ -14,3 +14,75 @@ CREATE TABLE [dbo].[emp_details]
     [salary] VARCHAR(50) NOT NULL, 
     [hdate] VARCHAR(50) NOT NULL
 )
+
+
+
+-----------insert data ----------
+string gender = string.Empty;
+            if (male.Checked)
+            {
+                gender = "Male";
+            }
+            else if (female.Checked)
+            {
+                gender = "Female";
+            }
+            if (txtfname.Text != "" && txtlname.Text != "" && txtcontact.Text != "" && txtemail.Text != "" && txtaddress.Text != "" && txtstate.Text != "" && txtpost.Text !="" && dateTimePicker1.Text!="")
+            {
+                string sql = "insert into emp_details values('" + txtfname.Text + "','" + txtlname.Text + "','" + txtcontact.Text + "','" + txtemail.Text + "','" + gender + "','" + txtaddress.Text + "','" + txtstate.Text + "','"+txtpost.Text+"','"+txtsalary.Text+"','" + dateTimePicker1.Text + "' )";
+                SqlDataAdapter da = new SqlDataAdapter(sql, Class1.cn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count != 0)
+                {
+                    MessageBox.Show("data not add");
+                }
+                else
+                {
+                    admin_form f3 = new admin_form();
+                    f3.Show();
+                    this.Hide();
+
+                }
+            }
+            else if (txtfname.Text == "")
+            {
+                MessageBox.Show("--Enter First Name--");
+                txtfname.Focus();
+
+            }
+            else if (txtlname.Text == "")
+            {
+                MessageBox.Show("--Enter Last Name--");
+                txtlname.Focus();
+            }
+            else if (txtcontact.Text == "")
+            {
+                MessageBox.Show("--Enter Contact--");
+                txtcontact.Focus();
+            }
+            else if (txtemail.Text == "")
+            {
+                MessageBox.Show("--Enter Email Name--");
+                txtemail.Focus();
+            }
+            else if (txtaddress.Text == "")
+            {
+                MessageBox.Show("--Enter Address Name--");
+                txtaddress.Focus();
+            }
+            else if (txtstate.Text == "")
+            {
+                MessageBox.Show("--Enter State Name--");
+                txtstate.Focus();
+            }
+            else if(txtpost.Text=="")
+            {
+                MessageBox.Show("--Enter post--");
+                txtpost.Focus();
+            }
+            else if(txtsalary.Text=="")
+            {
+                MessageBox.Show("--Enter salary--");
+            }
+        }
