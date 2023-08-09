@@ -86,3 +86,39 @@ string gender = string.Empty;
                 MessageBox.Show("--Enter salary--");
             }
         }
+
+
+-------------------search------------------
+
+ if (txtfname.Text != "")
+            {
+                string sql = "select * from emp_details where fname ='" + txtfname.Text + "'";
+                SqlDataAdapter da = new SqlDataAdapter(sql, Class1.cn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("data not found");
+                }
+                else
+                {
+                   
+                    txtfname.Text = dt.Rows[0][1].ToString();
+                    txtlname.Text = dt.Rows[0][2].ToString();
+                    txtcontact.Text = dt.Rows[0][3].ToString();
+                    txtemail.Text = dt.Rows[0][4].ToString();
+                    if (dt.Rows[0][5].ToString() == "Male")
+                    {
+                        male.Checked = true;
+                    }
+                    else
+                    {
+                        female.Checked= true;
+                    }
+                    txtaddress.Text = dt.Rows[0][6].ToString();
+                    txtstate.Text = dt.Rows[0][7].ToString();
+                    txtpost.Text= dt.Rows[0][8].ToString();
+                    txtsalary.Text = dt.Rows[0][9].ToString();
+                    dateTimePicker1.Text = dt.Rows[0][10].ToString();
+                }
+            }
