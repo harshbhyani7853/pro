@@ -122,3 +122,12 @@ string gender = string.Empty;
                     dateTimePicker1.Text = dt.Rows[0][10].ToString();
                 }
             }
+--------------------------------search--------------------------------------------
+string sql = "select * from Coustomer_detail";// where fname ='" + txtsearch.Text + "'";
+            SqlDataAdapter da = new SqlDataAdapter(sql, Class1.cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            DataView dataView = dt.DefaultView;
+            dataView.RowFilter = "email Like'%" + txtsearch.Text + "%'" ;
+            dataView.RowFilter = "contact Like'%" + txtsearch.Text + "%'";
