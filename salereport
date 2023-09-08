@@ -6,3 +6,46 @@ CREATE TABLE [dbo].[sale] (
     PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
+
+
+
+
+///////////////////////////////
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Schema;
+
+namespace bsc_it
+{
+    public partial class sale_report : Form
+    {
+        int a;
+        public sale_report()
+        {
+            InitializeComponent();
+        }
+
+        private void sale_report_Load(object sender, EventArgs e)
+        {
+           
+            string sql = "select * from sale ";
+            SqlDataAdapter da = new SqlDataAdapter(sql, Class1.cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            for (int i= 0; i<dataGridView1.Rows.Count; i++)
+            {
+               a += Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value);
+            }
+            label2.Text =a.ToString();
+        }
+    }
+}
